@@ -1,11 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import Axios from 'axios';
 import Header from '../../components/header/Header';
 import './login.css';
 
 const Login = () => {
-
+	const [lista, changeLista] = useState([])
 	const [username, changeUsername] = useState('');
 	const [password, changePassword] = useState('');
+
+	useEffect(() => {
+		Axios({
+			url: "https://jsonplaceholder.typicode.com/posts",
+		})
+		.then((response) => {
+			changeLista(response.data);
+			console.log(response.data);
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+	}, [changeLista]);
 
 	const changeState = (e) => {
 		if(e.target.name === 'email'){
