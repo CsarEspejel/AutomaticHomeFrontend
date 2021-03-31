@@ -1,0 +1,10 @@
+.login{
+    display: flex;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.collapse{
+    justify-content: flex-end;
+}

@@ -1,9 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import Login from './views/login/index';
+import './styles/index.css';
 
+const Index = () => {
+  return(
+    <div>
+      <Login />
+    </div>
+  );
+}
 
 ReactDOM.render(
-  <App />,
+  <Index />,
   document.getElementById('root')
 );

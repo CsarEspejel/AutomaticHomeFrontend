@@ -1,0 +1,17 @@
+.card{
+    width: 50%;
+    height: 80%;
+}
+
+.card-header{
+    background: #66D7D1;
+    color: white;
+}
+
+.card-body{
+    display: flex;
+    flex: 1 1 auto;
+    padding: 2.25rem;
+    flex-direction: column;
+    justify-content: center;
+}
