@@ -1,25 +1,33 @@
 import React, {useState, useEffect} from 'react';
-import Axios from 'axios';
 import Header from '../../components/header/Header';
+import Axios from 'axios';
+import AuthService from '../../services/AuthService';
 import './login.css';
 
 const Login = () => {
-	const [lista, changeLista] = useState([])
 	const [username, changeUsername] = useState('');
 	const [password, changePassword] = useState('');
 
-	useEffect(() => {
-		Axios({
-			url: "https://jsonplaceholder.typicode.com/posts",
-		})
-		.then((response) => {
-			changeLista(response.data);
-			console.log(response.data);
-		})
-		.catch((error) => {
-			console.log(error);
-		});
-	}, [changeLista]);
+	// useEffect(() => {
+	// 	const fetchData = async (user, pass) =>{
+	// 		try{
+	// 			const {data} = await Axios.post(
+	// 				"http://localhost:8000/api/login",
+	// 				{
+	// 					"username": user,
+	// 					"password": pass
+	// 				}
+	// 			);
+	// 			console.log("datos", data);
+	// 		}catch(error){
+	// 			console.log("error", error);
+	// 		}
+	// 	}
+	// 	fetchData(
+	// 		"cesaer@gmail.com",
+	// 		"chalemente"
+	// 	);
+	// });
 
 	const changeState = (e) => {
 		if(e.target.name === 'email'){
@@ -29,13 +37,21 @@ const Login = () => {
 		}
 	}
 
-	const onSubmit = (e) => {
+	const onSubmit = async (e) => {
 		e.preventDefault();
 
-		if (username === 'csaer@gmail.com' && password === 'chale')  {
-			alert('credenciales correctas')
-		}else{
-			alert('intenta de nuevo')
+		const credenciales = {
+			"email": username,
+			"password": password
+		};
+		try{
+			const {data} = await Axios.post(
+				"http://localhost:8000/api/login",
+				credenciales
+			);
+			console.log("datos", data);
+		}catch(error){
+			console.log("error", error);
 		}
 	}
 
