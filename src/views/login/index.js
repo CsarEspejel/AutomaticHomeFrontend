@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Header from "../../components/header/Header";
-import { Link } from "react-router-dom";
+import { Link, useHistory, Redirect, withRouter } from "react-router-dom";
 import "./login.css";
 import AuthService from "../../services/AuthService";
-import auth from "../../services/Auth";
+import Auth from "../../services/Auth";
 
-const Login = ({ history }) => {
+const Login = (props) => {
   const [username, changeUsername] = useState("");
   const [password, changePassword] = useState("");
-  const [isAuth, changeAuth] = useState(false);
+
+  // const history = useHistory();
 
   const changeState = (e) => {
     if (e.target.name === "email") {
@@ -39,13 +40,14 @@ const Login = ({ history }) => {
     console.log(response);
     if (response) {
       AuthService.handleLogin(response);
-      history.replace("/dispositivo");
+      props.history.replace("/dispositivo");
+      // <Redirect to="/dispositivo" />;
     } else {
       alert("Correo o contraseña incorrectos");
     }
   };
 
-  if (auth.isAuthenticated === false) {
+  if (Auth.authenticated === false) {
     return (
       <div>
         <Header />
@@ -95,7 +97,12 @@ const Login = ({ history }) => {
       </div>
     );
   } else {
+    return (
+      <div>
+        <Redirect to={"/dispositivo"} />;
+      </div>
+    );
   }
 };
 
-export default Login;
+export default withRouter(Login);
