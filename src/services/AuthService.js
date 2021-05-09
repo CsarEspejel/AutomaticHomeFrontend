@@ -1,14 +1,12 @@
 import Axios from "axios";
 import Auth from "./Auth";
 import CookieService from "./CookieService";
+import URL from "./urlService";
 
 class AuthService {
   async doLogin(credenciales) {
     try {
-      const { data } = await Axios.post(
-        "http://localhost:8000/api/login",
-        credenciales
-      );
+      const { data } = await Axios.post(URL.BASE_URL + "login", credenciales);
       // console.log("datos", data);
       return data;
       // let date = new Date();
@@ -27,9 +25,13 @@ class AuthService {
   }
 
   async doLogout() {
-    CookieService.getCookie("access_token");
     try {
-      const { data } = await Axios.get("http://localhost:8000/api/logout");
+      let config = {
+        headers: {
+          Authorization: "Bearer " + CookieService.getCookie("access_token"),
+        },
+      };
+      const { data } = await Axios.get(URL.BASE_URL + "logout", config);
       console.log("data", data);
       Auth.logout();
       return data;
