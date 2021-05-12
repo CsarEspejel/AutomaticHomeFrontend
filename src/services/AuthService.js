@@ -4,14 +4,21 @@ import CookieService from "./CookieService";
 import URL from "./urlService";
 
 class AuthService {
+  async doRegister(credenciales) {
+    const { data } = await Axios.post(
+      URL.BASE_URL_API + "register",
+      credenciales
+    );
+    return { success: data };
+  }
+
   async doLogin(credenciales) {
     try {
-      const { data } = await Axios.post(URL.BASE_URL + "login", credenciales);
-      // console.log("datos", data);
+      const { data } = await Axios.post(
+        URL.BASE_URL_API + "login",
+        credenciales
+      );
       return data;
-      // let date = new Date();
-      // date.setTime(date.getTime() + (expiresAt * 60 * 1000));
-      // const options
     } catch (error) {
       console.log("error", error);
       return false;
@@ -31,7 +38,7 @@ class AuthService {
           Authorization: "Bearer " + CookieService.getCookie("access_token"),
         },
       };
-      const { data } = await Axios.get(URL.BASE_URL + "logout", config);
+      const { data } = await Axios.get(URL.BASE_URL_API + "logout", config);
       console.log("data", data);
       Auth.logout();
       return data;

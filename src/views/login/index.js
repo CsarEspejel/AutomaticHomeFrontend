@@ -1,30 +1,19 @@
 import React, { useState } from "react";
-import Header from "../../components/header/Header";
-import { Link, useHistory, Redirect, withRouter } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./login.css";
 import AuthService from "../../services/AuthService";
 import Auth from "../../services/Auth";
+import url from "../../services/urlService";
 
-const Login = (props) => {
+const Login = () => {
   const [username, changeUsername] = useState("");
   const [password, changePassword] = useState("");
-
-  // const history = useHistory();
 
   const changeState = (e) => {
     if (e.target.name === "email") {
       changeUsername(e.target.value);
     } else if (e.target.name === "password") {
       changePassword(e.target.value);
-    }
-  };
-
-  const logout = async (e) => {
-    e.preventDefault();
-    try {
-      AuthService.doLogout();
-    } catch (error) {
-      console.log("error", error);
     }
   };
 
@@ -40,17 +29,16 @@ const Login = (props) => {
     console.log(response);
     if (response) {
       AuthService.handleLogin(response);
-      props.history.replace("/dispositivo");
-      // <Redirect to="/dispositivo" />;
+      window.location = url.BASE_URL + "dispositivo";
     } else {
       alert("Correo o contraseña incorrectos");
     }
   };
 
-  if (Auth.authenticated === false) {
+  if (Auth.isAuthenticated() === false) {
     return (
       <div>
-        <Header />
+        <h1>Automatic Home</h1>
         <div className="container login">
           <div className="card text-center">
             <div className="card-header">Iniciar Sesión</div>
@@ -80,13 +68,12 @@ const Login = (props) => {
                     onChange={changeState}
                   />
                 </div>
-                <Link to="/createUser" className="btn btn-secondary">
+                <Link to="/register" className="btn btn-secondary">
                   Crear Usuario
                 </Link>
                 <button type="submit" className="btn btn-primary">
                   Entremos
                 </button>
-                <button onClick={logout}>Cerrar pana</button>
               </form>
             </div>
             <div className="card-footer text-muted">
@@ -105,4 +92,4 @@ const Login = (props) => {
   }
 };
 
-export default withRouter(Login);
+export default Login;

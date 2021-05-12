@@ -10,22 +10,29 @@ let config = {
 
 class ApiDispositivos {
   async getAllDispositivos() {
-    return await Axios.get(URL.BASE_URL + "/dispositivo", config);
+    return await Axios.get(URL.BASE_URL_API + "dispositivo", config);
   }
   async getOneDispositivo(id) {
-    return await Axios.get(URL.BASE_URL + "/dispositivo/" + id + "/edit");
+    return await Axios.get(
+      URL.BASE_URL_API + "dispositivo/" + id + "/edit",
+      config
+    );
   }
 
   async addDispositivo(post) {
-    return await Axios.post(URL.BASE_URL + "/dispositivo", post);
+    return await Axios.post(URL.BASE_URL_API + "dispositivo", post, config);
   }
 
   async updateDispositivo(post, id) {
-    return await Axios.put(URL.BASE_URL + "/dispositivo/" + id, post);
+    return await Axios.put(
+      URL.BASE_URL_API + "dispositivo/" + id,
+      post,
+      config
+    );
   }
 
   async deleteDispositivo(id) {
-    return await Axios.delete(URL.BASE_URL + "/dispositivo/" + id);
+    return await Axios.delete(URL.BASE_URL_API + "dispositivo/" + id, config);
   }
 }
 

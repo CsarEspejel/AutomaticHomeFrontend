@@ -4,7 +4,7 @@ class Auth {
   constructor() {
     const token = CookieService.getCookie("access_token");
     token ? (this.authenticated = true) : (this.authenticated = false);
-    return this.authenticated;
+    // return this.authenticated;
   }
 
   logout() {

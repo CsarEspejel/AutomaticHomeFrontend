@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import api from "../../services/apis/apiDispositivos";
+import api from "../../services/apis/apiInmuebles";
 import List from "../../components/List";
 import Header from "../../components/header/Header";
+import { Link } from "react-router-dom";
 
 const Dispositivo = () => {
   const [registros, setRegistros] = useState(null);
 
   const fetchData = async () => {
-    await api.getAllDispositivos().then((res) => {
+    await api.getAllInmuebles().then((res) => {
       const result = res.data;
       setRegistros(result.data);
       console.log(registros);
@@ -36,22 +36,22 @@ const Dispositivo = () => {
       );
     }
 
-    return <List type="dispositivos" registros={registros} />;
+    return <List type="inmuebles" registros={registros} />;
   };
 
   return (
     <div>
       <Header />
-      <Link to="/newDispositivo" className="btn btn-primary">
-        Agregar Dispositivo
+      <Link to="/newInmueble" className="btn btn-primary">
+        Agregar Inmueble
       </Link>
       <div className="table-responsive">
         <table className="table table-stripped mt-4">
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nombre Dispositivo</th>
-              <th>Description</th>
+              <th>Nombre Inmueble</th>
+              <th>Direcci[on</th>
               <th>Action</th>
             </tr>
           </thead>
