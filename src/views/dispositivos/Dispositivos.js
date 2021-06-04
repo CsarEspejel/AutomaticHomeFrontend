@@ -11,7 +11,7 @@ const Dispositivo = () => {
     await api.getAllDispositivos().then((res) => {
       const result = res.data;
       setRegistros(result.data);
-      console.log(registros);
+      // console.log(registros);
     });
   };
 
