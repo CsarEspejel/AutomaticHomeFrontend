@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import api from "../../services/apis/apiDispositivos";
 import List from "../../components/List";
 import Header from "../../components/header/Header";
+import CardDispositivos from "../../components/cardsDispositivos/cardDispositivos";
+import "./dispositivos.css";
 
 const Dispositivo = () => {
   const [registros, setRegistros] = useState(null);
@@ -11,7 +13,7 @@ const Dispositivo = () => {
     await api.getAllDispositivos().then((res) => {
       const result = res.data;
       setRegistros(result.data);
-      console.log(registros);
+      // console.log(registros);
     });
   };
 
@@ -36,29 +38,20 @@ const Dispositivo = () => {
       );
     }
 
-    return <List type="dispositivos" registros={registros} />;
+    // return <List type="dispositivos" registros={registros} />;
+    return <CardDispositivos type="dispositivos" registros={registros} />;
   };
 
   return (
-    <div>
+    <>
       <Header />
-      <Link to="/newDispositivo" className="btn btn-primary">
-        Agregar Dispositivo
-      </Link>
-      <div className="table-responsive">
-        <table className="table table-stripped mt-4">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre Dispositivo</th>
-              <th>Description</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>{renderRegistros()}</tbody>
-        </table>
+      <div className="show-dispositivos">
+        <Link to="/newDispositivo" className="btn btn-primary btn-addDisp">
+          Agregar Dispositivo
+        </Link>
+        <div className="show-cards">{renderRegistros()}</div>
       </div>
-    </div>
+    </>
   );
 };
 

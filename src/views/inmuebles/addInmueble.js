@@ -15,10 +15,10 @@ const AddInmueble = () => {
     await api.addInmueble(data).then((res) => {
       const result = res.data;
       setMessage(result.success);
-      console.log(result);
+      // console.log(result);
     });
 
-    console.log(data);
+    // console.log(data);
   };
 
   return (

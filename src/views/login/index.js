@@ -26,7 +26,7 @@ const Login = () => {
     };
 
     var response = await AuthService.doLogin(credenciales);
-    console.log(response);
+    // console.log(response);
     if (response) {
       AuthService.handleLogin(response);
       window.location = url.BASE_URL + "dispositivo";

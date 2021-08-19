@@ -66,14 +66,14 @@ const Register = () => {
       var response = await AuthService.doRegister(credenciales);
 
       if (response.success) {
-        console.log("Se ha guardado con exito broooooo");
+        // console.log("Se ha guardado con exito broooooo");
         setMessage(response.success);
         window.location = url.BASE_URL + "login";
       } else {
         throw new Error(response);
       }
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
       setMessage(message);
     }
   };

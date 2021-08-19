@@ -15,10 +15,10 @@ const AddDispositivo = () => {
     await api.addDispositivo(data).then((res) => {
       const result = res.data;
       setMessage(result.success);
-      console.log(result);
+      // console.log(result);
     });
 
-    console.log(data);
+    // console.log(data);
   };
 
   return (
@@ -39,13 +39,26 @@ const AddDispositivo = () => {
                 <label htmlFor="nombre_dispositivo">
                   Nombre del dispositivo
                 </label>
-                <input
+                {/* <input
                   className="form-control"
                   {...register("nombre_dispositivo", {
                     required: true,
                     maxLength: 25,
                   })}
-                />
+                /> */}
+                <select
+                  className="form-control"
+                  {...register("nombre_dispositivo", {
+                    required: true,
+                    maxLength: 25,
+                  })}
+                >
+                  <option value="">Selecciona una opción</option>
+                  <option value="Luces">Luces</option>
+                  <option value="Puerta">Puerta</option>
+                  <option value="Ventanas">Ventana</option>
+                  <option value="Sensor">Sensor</option>
+                </select>
                 <span>
                   {errors.nombre_dispositivo?.type === "required" &&
                     "El nombre del dispositivo es requerido"}
