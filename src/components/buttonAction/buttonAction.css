@@ -1,0 +1,12 @@
+.toggle--button {
+  border: none;
+  width: 50%;
+  padding: 8px;
+  background: none;
+  transition-duration: 0.3s;
+}
+
+.toggle--button:hover {
+  color: #ffffff;
+  background: #1de9b6;
+}

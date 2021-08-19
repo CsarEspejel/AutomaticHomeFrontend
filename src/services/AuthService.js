@@ -20,7 +20,7 @@ class AuthService {
       );
       return data;
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
       return false;
     }
   }
@@ -39,11 +39,11 @@ class AuthService {
         },
       };
       const { data } = await Axios.get(URL.BASE_URL_API + "logout", config);
-      console.log("data", data);
+      // console.log("data", data);
       Auth.logout();
       return data;
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
       return false;
     }
   }

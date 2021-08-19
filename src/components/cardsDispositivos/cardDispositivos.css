@@ -1,0 +1,10 @@
+.card-disp {
+  padding: 30px 30px;
+  background: #fff;
+  max-width: 260px;
+  min-width: 260px;
+  max-height: 180px;
+  border-radius: 20px;
+  margin: 40px 40px;
+  box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
+}
